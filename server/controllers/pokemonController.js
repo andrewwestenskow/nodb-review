@@ -3,11 +3,42 @@ const caughtPokemon = []
 let id = 0
 
 module.exports = {
-  getCaughtPokemon: (req, res) => {},
+  getCaughtPokemon: (req, res) => {
+    res.status(200).send(caughtPokemon)
+  },
 
-  catchPokemon: (req, res) => {},
+  catchPokemon: (req, res) => {
+    const { pokemon } = req.body
+    pokemon.id = id
+    id++
 
-  editPokemonName: (req, res) => {},
+    caughtPokemon.push(pokemon)
 
-  releasePokemon: (req, res) => {},
+    res.status(200).send(caughtPokemon)
+  },
+
+  editPokemonName: (req, res) => {
+    const { id } = req.params
+    const { name } = req.body
+
+    const index = caughtPokemon.findIndex(element => {
+      return element.id === +id
+    })
+
+    caughtPokemon[index].name = name
+
+    res.status(200).send(caughtPokemon)
+  },
+
+  releasePokemon: (req, res) => {
+    const { id } = req.params
+
+    const index = caughtPokemon.findIndex(element => {
+      return element.id === +id
+    })
+
+    caughtPokemon.splice(index, 1)
+
+    res.status(200).send(caughtPokemon)
+  },
 }
