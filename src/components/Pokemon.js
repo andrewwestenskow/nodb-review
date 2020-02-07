@@ -42,7 +42,7 @@ class Pokemon extends Component {
         ) : (
           <p onDoubleClick={this.toggleEdit}>{this.props.pokemon.name}</p>
         )}
-        <img src={this.props.pokemon.image} />
+        <img alt={this.props.pokemon.name} src={this.props.pokemon.image} />
         <button
           onClick={() => this.props.releasePokemon(this.props.pokemon.id)}
         >

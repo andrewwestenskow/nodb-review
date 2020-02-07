@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import grass from '../assets/pokemon-grass.png'
 
 class Grass extends Component {
   constructor(props) {
@@ -7,24 +8,39 @@ class Grass extends Component {
     this.state = {
       grassClicked: false,
     }
+
+    this.checkGrass = this.checkGrass.bind(this)
   }
 
-  checkGrass() {}
+  checkGrass() {
+    if (this.state.grassClicked) {
+      this.props.catchPokemon({
+        name: this.props.pokemon.name,
+        image: this.props.pokemon.sprites.front_default,
+      })
+      this.props.refreshFn()
+      this.setState({
+        grassClicked: false,
+      })
+    } else {
+      this.setState({
+        grassClicked: true,
+      })
+    }
+  }
 
   render() {
     return (
-      <div>
-        <p>{this.props.pokemon.name}</p>
-        <img
-          src={this.props.pokemon.sprites.front_default}
-          onClick={() => {
-            this.props.catchPokemon({
-              name: this.props.pokemon.name,
-              image: this.props.pokemon.sprites.front_default,
-            })
-          }}
-        />
-      </div>
+      <img
+        style={{ width: '150px', height: '150px' }}
+        src={
+          this.state.grassClicked
+            ? this.props.pokemon.sprites.front_default
+            : grass
+        }
+        alt={this.props.pokemon.name}
+        onClick={this.checkGrass}
+      />
     )
   }
 }
