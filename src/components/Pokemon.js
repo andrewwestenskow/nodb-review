@@ -54,22 +54,3 @@ class Pokemon extends Component {
 }
 
 export default Pokemon
-
-const template = [
-  {
-    id: 0,
-    position: 0,
-    type: 'verb',
-    response: '',
-  },
-  {
-    id: 1,
-    position: 1,
-    type: 'noun',
-  },
-  {
-    id: 2,
-    position: 2,
-    type: 'adjective',
-  },
-]
